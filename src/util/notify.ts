@@ -2,25 +2,37 @@ import { Notyf } from "notyf";
 
 export enum SccMsg {
     LOGIN_SUCCESS = "Login successful",
+    
     COMPANY_ADDED = "Company successfully added",
     COMPANY_UPDATED = "Company successfully updated",
+    COMPANY_DELETED = "Company successfully deleted",
+    
+    CUSTOMER_ADDED = "Customer successfully added",
+    CUSTOMER_UPDATED = "Customer successfully updated",
+    
+    COUPON_ADDED = "Coupon successfully added",
     COUPON_UPDATED = "Coupon successsfully updated",
-    COMPANY_DELETED = "Company successfully deleted"
 }
 
 export enum ErrMsg {
     LOGIN_ERROR = "Login failed",
     GENERAL_ERROR = "Something went wrong with loading page!",
     LOGIN_AUTHORIZATION_NEEDED = "You need to be logged in to access this page!",
+    
     COMPANY_ADD_ERROR_EXISTS = "Company already exists",
-    COMPANY_NOT_FOUND = "Could not find companies matching query",
+    COMPANY_NOT_FOUND = "Could not find companies",
     NO_COMPANIES_EXIST = "No companies in database",
-    CUSTOMER_NOT_FOUND = "Could not find customers matching query",
-    NO_CUSTOMERS_EXIST = "No customers in database",
     NO_COMPANY_COUPONS = "Company doesn't have any coupon",
+    
+    NO_COUPONS_CATEGORY = "No coupons found in that category",
+    NO_COUPONS_PRICE = "No coupons found under that price",
+    COUPON_NOT_FOUND = "Could not find coupons",
+    COUPON_ADD_ERROR_EXISTS = "Coupon already exists",
+
+    CUSTOMER_NOT_FOUND = "Could not find customers",
+    CUSTOMER_ADD_ERROR_EXISTS = "Customer already exists",
+    NO_CUSTOMERS_EXIST = "No customers in database",
     NO_CUSTOMER_COUPONS = "Customer doesn't have any coupons",
-    NO_COUPONS_CATEGORY = "No coupons from that category",
-    NO_COUPONS_PRICE = "No coupons find at that price"
 }
 
 class Notify {
@@ -42,13 +54,13 @@ class Notify {
         if (typeof err === 'string') {
             return err;
         }
-        if (typeof err?.response?.data === 'string') { // backend exact error (advice), ? because we can't be sure we will get it
+        if (typeof err?.response?.data === 'string') {
             return err?.response?.data;
         }
-        if (Array.isArray(err?.response?.data)) { // array of backend exact errors
+        if (Array.isArray(err?.response?.data)) {
             return err?.response?.data[0];
         }
-        if (typeof err?.message === 'string') { // must be last
+        if (typeof err?.message === 'string') {
             return err?.message;
         }
 

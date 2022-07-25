@@ -46,10 +46,10 @@ function UpdateCompany(): JSX.Element {
     msg.id = updateCompany.id;
     msg.password = updateCompany.password;
     msg.coupons = updateCompany.coupons;
-    if (msg.name == "") {
+    if (msg.name === "") {
       msg.name = updateCompany.name;
     }
-    if (msg.email == "") {
+    if (msg.email === "") {
       msg.name = updateCompany.email;
     }
     jwtAxios

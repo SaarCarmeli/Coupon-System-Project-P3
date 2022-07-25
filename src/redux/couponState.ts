@@ -1,6 +1,3 @@
-import globals from '../util/global';
-import jwtAxios from '../util/JwtAxios';
-import notify, { ErrMsg } from '../util/notify';
 import { Coupon } from './../Models/Coupon';
 
 export class CouponState {

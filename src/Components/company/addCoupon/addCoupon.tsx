@@ -8,6 +8,7 @@ import store from "../../../redux/store";
 import globals from "../../../util/global";
 import jwtAxios from "../../../util/JwtAxios";
 import notify, { SccMsg, ErrMsg } from "../../../util/notify";
+import { addCoupon } from "../../../redux/couponState";
 import "./addCoupon.css";
 
 function AddCoupon(): JSX.Element {
@@ -18,10 +19,11 @@ function AddCoupon(): JSX.Element {
     formState: { errors },
   } = useForm<Coupon>();
 
-  const addCoupon = (msg: Coupon) => {
+  const createCoupon = (msg: Coupon) => {
     jwtAxios
       .post<Coupon>(globals.urls.companyAddCoupon, msg)
       .then((response) => {
+        store.dispatch(addCoupon(msg));
         notify.success(SccMsg.COUPON_ADDED);
       })
       .catch((err) => {
@@ -44,7 +46,7 @@ function AddCoupon(): JSX.Element {
       <hr />
       <br />
       <br />
-      <form onSubmit={handleSubmit(addCoupon)}>
+      <form onSubmit={handleSubmit(createCoupon)}>
         <TextField
           name="amount"
           label="Amount"

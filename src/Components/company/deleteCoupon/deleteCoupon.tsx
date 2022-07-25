@@ -7,16 +7,21 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import store from "../../../redux/store";
 import globals from "../../../util/global";
 import jwtAxios from "../../../util/JwtAxios";
-import notify, { ErrMsg } from "../../../util/notify";
+import notify, { ErrMsg, SccMsg } from "../../../util/notify";
+import { deleteCoupon } from "../../../redux/couponState";
 import "./deleteCoupon.css";
 
 function DeleteCoupon(): JSX.Element {
   const navigate = useNavigate();
   let [couponId, setId] = useState(0);
 
-  const deleteCoupon = () => {
+  const delCoupon = () => {
     jwtAxios
       .delete<Coupon>(globals.urls.companyDeleteCoupon + couponId)
+      .then((response) => {
+        store.dispatch(deleteCoupon(couponId));
+        notify.success(SccMsg.COUPON_DELETED);
+      })
       .catch((err) => {
         switch (err.response.status) {
           case 401:
@@ -56,7 +61,7 @@ function DeleteCoupon(): JSX.Element {
       <ButtonGroup variant="contained">
         <Button
           color="warning"
-          onClick={deleteCoupon}
+          onClick={delCoupon}
           startIcon={<DeleteIcon />}
         >
           Delete Coupon

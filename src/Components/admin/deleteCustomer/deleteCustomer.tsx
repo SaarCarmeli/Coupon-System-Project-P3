@@ -7,7 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import store from "../../../redux/store";
 import globals from "../../../util/global";
 import jwtAxios from "../../../util/JwtAxios";
-import notify, { ErrMsg } from "../../../util/notify";
+import notify, { ErrMsg, SccMsg } from "../../../util/notify";
 import "./deleteCustomer.css";
 
 function DeleteCustomer(): JSX.Element {
@@ -17,6 +17,9 @@ function DeleteCustomer(): JSX.Element {
     const deleteCustomer = () => {
         jwtAxios
         .delete<Customer>(globals.urls.adminDeleteCustomer + customerId)
+        .then(() => {
+          notify.success(SccMsg.CUSTOMER_DELETED);
+        })
         .catch((err) => {   
             switch (err.response.status) {
                 case 401:

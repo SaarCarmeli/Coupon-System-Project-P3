@@ -9,9 +9,11 @@ export enum SccMsg {
     
     CUSTOMER_ADDED = "Customer successfully added",
     CUSTOMER_UPDATED = "Customer successfully updated",
+    CUSTOMER_DELETED = "Customer successfully deleted",
     
     COUPON_ADDED = "Coupon successfully added",
     COUPON_UPDATED = "Coupon successsfully updated",
+    COUPON_DELETED = "Coupon successfully deleted",
 }
 
 export enum ErrMsg {

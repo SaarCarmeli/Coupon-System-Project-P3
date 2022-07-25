@@ -59,7 +59,7 @@ function UpdateCompany(): JSX.Element {
       })
       .catch((err) => {
         console.log(err);
-        notify.error(ErrMsg.LOGIN_ERROR);
+        notify.error(ErrMsg.LOGIN_AUTHORIZATION_NEEDED);
       });
   };
 

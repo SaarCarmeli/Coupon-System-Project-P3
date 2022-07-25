@@ -14,7 +14,6 @@ import { updateCoupon } from "../../../redux/couponState";
 import store from "../../../redux/store";
 
 function UpdateCoupon(): JSX.Element {
-  const navigate = useNavigate();
   let [coupons, setCoupons] = useState<Coupon[]>([]);
   let [updCoupon, setUpdateCoupon] = useState<Coupon>(new Coupon());
   let [couponId, setId] = useState(0);
@@ -74,7 +73,7 @@ function UpdateCoupon(): JSX.Element {
       })
       .catch((err) => {
         console.log(err);
-        notify.error(ErrMsg.LOGIN_ERROR);
+        notify.error(ErrMsg.LOGIN_AUTHORIZATION_NEEDED);
       });
   };
 

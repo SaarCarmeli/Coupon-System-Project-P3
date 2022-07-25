@@ -2,6 +2,7 @@ import { Notyf } from "notyf";
 
 export enum SccMsg {
     LOGIN_SUCCESS = "Login successful",
+    PURCHASE_SUCCESS = "Purchase successfull",
     
     COMPANY_ADDED = "Company successfully added",
     COMPANY_UPDATED = "Company successfully updated",
@@ -35,11 +36,13 @@ export enum ErrMsg {
     CUSTOMER_ADD_ERROR_EXISTS = "Customer already exists",
     NO_CUSTOMERS_EXIST = "No customers in database",
     NO_CUSTOMER_COUPONS = "Customer doesn't have any coupons",
+
+    PURCHASE_FAILED = "Coupon not purchased! You may already own it, or it may be out of stock.",
 }
 
 class Notify {
     private notification = new Notyf({
-        duration: 4000,
+        duration: 5000,
         position: {x: "center", y: "top"}
     });
 
